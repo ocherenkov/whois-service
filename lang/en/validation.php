@@ -160,6 +160,7 @@ return [
     'url' => 'The :attribute field must be a valid URL.',
     'ulid' => 'The :attribute field must be a valid ULID.',
     'uuid' => 'The :attribute field must be a valid UUID.',
+    'domain_or_ip' => 'The :attribute must be a valid domain or IP address.',
 
     /*
     |--------------------------------------------------------------------------
