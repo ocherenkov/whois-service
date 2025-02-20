@@ -82,12 +82,12 @@
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': CSRF_TOKEN
                 },
-                body: JSON.stringify({ domain })
+                body: JSON.stringify({domain})
             });
 
             const data = await response.json();
             if (!response.ok) {
-                throw new Error(data.error || FETCH_ERROR);
+                throw new Error(data.message || FETCH_ERROR);
             }
             renderWhoisData(data.parsed);
             toggleVisibility(resultSection, true);

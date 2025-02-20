@@ -9,6 +9,7 @@ use App\Services\API\WhoisService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use RuntimeException;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class WhoisController extends Controller
 {
@@ -19,9 +20,9 @@ class WhoisController extends Controller
             $result = $whoisService->lookup($request->validated(['domain']));
             return response()->json(new WhoisResource($result));
         } catch (ValidationException $e) {
-            return response()->json(['error' => $e->getMessage()], 422);
+            return response()->json(['message' => $e->getMessage()], ResponseAlias::HTTP_UNPROCESSABLE_ENTITY);
         } catch (RuntimeException $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['message' => $e->getMessage()], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
